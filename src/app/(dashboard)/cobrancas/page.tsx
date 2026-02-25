@@ -21,7 +21,6 @@ import {
   AlertTriangle,
   Clock,
   FileText,
-  CreditCard,
   QrCode,
   Receipt,
 } from "lucide-react";
@@ -29,7 +28,6 @@ import {
 const PAYMENT_ICONS: Record<string, React.ReactNode> = {
   Boleto: <FileText className="h-3.5 w-3.5" />,
   Pix: <QrCode className="h-3.5 w-3.5" />,
-  Cartão: <CreditCard className="h-3.5 w-3.5" />,
 };
 
 const NF_CATEGORIES = ["Royalties", "FNP"];
