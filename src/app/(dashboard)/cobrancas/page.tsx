@@ -12,6 +12,7 @@ import { SearchBar } from "@/components/ui/search-bar";
 import { getStatusClasses } from "@/components/ui/status-badge";
 import { cn } from "@/lib/cn";
 import { supabase, type Cobranca } from "@/lib/supabase";
+import Link from "next/link";
 import {
   ChevronDown,
   ChevronUp,
@@ -339,38 +340,52 @@ export default function CobrancasPage() {
                   {paginatedRows.map((c) => (
                     <tr key={c.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors cursor-pointer">
                       <td className="px-4 py-3">
-                        <p className="font-medium text-gray-900 text-sm">{c.descricao || c.id.slice(0, 8)}</p>
-                        <p className="text-xs text-muted-foreground">{c.categoria}</p>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <p className="font-medium text-gray-900 text-sm">{c.descricao || c.id.slice(0, 8)}</p>
+                          <p className="text-xs text-muted-foreground">{c.categoria}</p>
+                        </Link>
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-700">{c.cliente}</td>
+                      <td className="px-4 py-3 text-sm text-gray-700">
+                        <Link href={`/cobrancas/${c.id}`} className="block">{c.cliente}</Link>
+                      </td>
                       <td className={cn(
                         "px-4 py-3 text-sm",
                         isOverdue(c.vencimento, c.status) ? "text-red-600 font-medium" : "text-gray-600"
                       )}>
-                        {new Date(c.vencimento + "T12:00:00").toLocaleDateString("pt-BR")}
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          {new Date(c.vencimento + "T12:00:00").toLocaleDateString("pt-BR")}
+                        </Link>
                       </td>
                       <td className="px-4 py-3 text-sm">
-                        {c.paid_at ? (
-                          <span className="text-emerald-600">
-                            {new Date(c.paid_at).toLocaleDateString("pt-BR")}
-                          </span>
-                        ) : (
-                          <span className="text-gray-300">—</span>
-                        )}
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          {c.paid_at ? (
+                            <span className="text-emerald-600">
+                              {new Date(c.paid_at).toLocaleDateString("pt-BR")}
+                            </span>
+                          ) : (
+                            <span className="text-gray-300">—</span>
+                          )}
+                        </Link>
                       </td>
                       <td className="px-4 py-3 text-right text-sm text-gray-900 font-medium tabular-nums">
-                        {fmtBRL(Number(c.valor))}
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          {fmtBRL(Number(c.valor))}
+                        </Link>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="inline-flex items-center gap-1.5 text-xs text-gray-600">
-                          {PAYMENT_ICONS[c.forma_pagamento || ""] || null}
-                          {c.forma_pagamento}
-                        </span>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <span className="inline-flex items-center gap-1.5 text-xs text-gray-600">
+                            {PAYMENT_ICONS[c.forma_pagamento || ""] || null}
+                            {c.forma_pagamento}
+                          </span>
+                        </Link>
                       </td>
                       <td className="px-4 py-3">
-                        <span className={cn("px-2.5 py-1 text-xs font-medium rounded-full border", getStatusClasses(c.status))}>
-                          {c.status}
-                        </span>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <span className={cn("px-2.5 py-1 text-xs font-medium rounded-full border", getStatusClasses(c.status))}>
+                            {c.status}
+                          </span>
+                        </Link>
                       </td>
                       <td className="px-4 py-3 text-center">
                         {c.nf_emitida ? (

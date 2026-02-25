@@ -277,22 +277,36 @@ export default function ClienteDetalhePage() {
                       className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors cursor-pointer"
                     >
                       <td className="px-5 py-3">
-                        <p className="font-medium text-gray-900 truncate max-w-[200px]">{c.descricao}</p>
-                        <p className="text-xs text-gray-400">{c.competencia}</p>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <p className="font-medium text-gray-900 truncate max-w-[200px]">{c.descricao}</p>
+                          <p className="text-xs text-gray-400">{c.competencia}</p>
+                        </Link>
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{c.categoria}</td>
-                      <td className="px-4 py-3 text-gray-600 tabular-nums">{fmtDate(c.vencimento)}</td>
-                      <td className="px-4 py-3 text-right text-gray-900 tabular-nums font-medium">{fmtBRL(Number(c.valor))}</td>
+                      <td className="px-4 py-3 text-gray-600">
+                        <Link href={`/cobrancas/${c.id}`} className="block">{c.categoria}</Link>
+                      </td>
+                      <td className="px-4 py-3 text-gray-600 tabular-nums">
+                        <Link href={`/cobrancas/${c.id}`} className="block">{fmtDate(c.vencimento)}</Link>
+                      </td>
+                      <td className="px-4 py-3 text-right text-gray-900 tabular-nums font-medium">
+                        <Link href={`/cobrancas/${c.id}`} className="block">{fmtBRL(Number(c.valor))}</Link>
+                      </td>
                       <td className="px-4 py-3 text-right tabular-nums">
-                        <span className={valorAbertoC > 0 && c.status !== "Paga" ? "text-red-600 font-medium" : "text-gray-400"}>
-                          {valorAbertoC > 0 && c.status !== "Paga" ? fmtBRL(valorAbertoC) : "—"}
-                        </span>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <span className={valorAbertoC > 0 && c.status !== "Paga" ? "text-red-600 font-medium" : "text-gray-400"}>
+                            {valorAbertoC > 0 && c.status !== "Paga" ? fmtBRL(valorAbertoC) : "—"}
+                          </span>
+                        </Link>
                       </td>
-                      <td className="px-4 py-3 text-gray-600">{c.forma_pagamento}</td>
+                      <td className="px-4 py-3 text-gray-600">
+                        <Link href={`/cobrancas/${c.id}`} className="block">{c.forma_pagamento}</Link>
+                      </td>
                       <td className="px-4 py-3">
-                        <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", sc2.bg, sc2.text)}>
-                          {c.status}
-                        </span>
+                        <Link href={`/cobrancas/${c.id}`} className="block">
+                          <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", sc2.bg, sc2.text)}>
+                            {c.status}
+                          </span>
+                        </Link>
                       </td>
                     </tr>
                   );
